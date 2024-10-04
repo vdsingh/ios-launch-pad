@@ -108,71 +108,18 @@ public enum FeatureTargetType: Equatable {
 }
 
 extension Project {
-    
-
-    /// Helper function to create the Project for this ExampleApp
-//    public static func app(
-//        name: String,
-//        sourcesPath: SourceFilesList? = "Sources/**",
-//        resourcesPath: ResourceFileElements = "Resources/**",
-//        includeTests: Bool = true,
-////        additionalInfoPlistEntries: [String: Plist.Value] = [:],
-//        infoPlist: InfoPlist = .default,
-//        moduleDeps: [String],
-//        externalDeps: [ExternalDependency]
-////        otherLocalDependencies: [OtherLocalDependency]
-//    ) -> Project {
-//        
-//        let dependencies = Self.mapModuleDependencies(moduleDeps) + Self.mapExternalDependencies(externalDeps) 
-////        + otherLocalDependencies.map { $0.makeDependency() }
-//        var targets: [Target] = [
-//            self.appTarget(name: name, sourcesPath: sourcesPath, resourcesPath: resourcesPath,
-//                           infoPlist: infoPlist, dependencies: dependencies)
-//        ]
-//        
-//        if includeTests {
-//            targets.append(Target.target(
-//                name: "\(name)Tests",
-//                destinations: .iOS,
-//                product: .unitTests,
-//                bundleId: .bundleId(for: "\(name)Tests"),
-//                infoPlist: .default,
-//                sources: "Tests/**",
-//                dependencies: [
-//                    .target(name: name),
-//                ]
-//            ))
-//        }
-//        return Project(
-//            name: name,
-//            targets: targets,
-//            resourceSynthesizers: [.assets()]
-//        )
-//    }
-
     /// Creates a Project for a Module
     /// - Parameters:
     ///   - name: The name of the module
-    ///   - products: The products that the module is intended for
-    ///   - moduleDeps: The other modules that this one depends on
-    ///   - externalDeps: The external dependencies
-    ///   - excludeUtility: Whether the "Utility" module should be excluded
+    ///   - featureTargets: An array of FeatureTarget objects representing different targets for the module
+    ///   - includeResources: A boolean indicating whether to include resources in the module
     /// - Returns: A Project for the module
     public static func module(
         _ name: String,
         featureTargets: [FeatureTarget],
-//        moduleDeps: [String],
-//        externalDeps: [ExternalDependency],
-//        otherLocalDependencies: [OtherLocalDependency] = [],
-//        infoPlist: InfoPlist = .default,
         includeResources: Bool = false
-//        excludeUtility: Bool = false
     ) -> Project {
         var targets = [Target]()
-        
-//        + otherLocalDependencies.map { $0.makeDependency() }
-//        + (excludeUtility ? [] : [.project(target: "Utility", path: "../Utility")])
-        
         featureTargets.forEach { target in
             let dependencies = Self.mapModuleDependencies(target.moduleDependencies) +
             Self.mapExternalDependencies(target.externalDependencies)
