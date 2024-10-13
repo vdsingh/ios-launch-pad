@@ -9,7 +9,9 @@ let project = Project.module(
             externalDependencies: []
         ),
         UnitTests(
-            moduleDependencies: [],
+            moduleDependencies: [
+                "{{ModuleName}}",
+            ],
             externalDependencies: []
         ),
     ],

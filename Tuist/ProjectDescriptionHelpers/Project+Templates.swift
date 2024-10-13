@@ -1,4 +1,4 @@
-import ProjectDescription
+@preconcurrency import ProjectDescription
 
 public class Framework: FeatureTarget {
     public var targetType: FeatureTargetType {
@@ -6,14 +6,14 @@ public class Framework: FeatureTarget {
     }
     
     public let moduleDependencies: [String]
-    public let externalDependencies: [ExternalDependency]
+    public let externalDependencies: [String]
     public let infoPlist: InfoPlist
     public let nameOverride: String?
     public var sourcesPath: String
 
     public init(
         moduleDependencies: [String],
-        externalDependencies: [ExternalDependency],
+        externalDependencies: [String],
         sourcesPath: String = "Sources/**",
         infoPlist: InfoPlist = .default,
         nameOverride: String? = nil
@@ -32,14 +32,14 @@ public class UnitTests: FeatureTarget {
     }
     
     public let moduleDependencies: [String]
-    public let externalDependencies: [ExternalDependency]
+    public let externalDependencies: [String]
     public let infoPlist: InfoPlist
     public let nameOverride: String?
     public var sourcesPath: String
 
     public init(
         moduleDependencies: [String],
-        externalDependencies: [ExternalDependency],
+        externalDependencies: [String],
         sourcesPath: String = "Tests/**",
         infoPlist: InfoPlist = .default,
         nameOverride: String? = nil
@@ -58,14 +58,14 @@ public class App: FeatureTarget {
     }
     
     public let moduleDependencies: [String]
-    public let externalDependencies: [ExternalDependency]
+    public let externalDependencies: [String]
     public let infoPlist: InfoPlist
     public let nameOverride: String?
     public var sourcesPath: String
     
     public init(
         moduleDependencies: [String],
-        externalDependencies: [ExternalDependency],
+        externalDependencies: [String],
         sourcesPath: String = "Sources/**",
         infoPlist: InfoPlist = .default,
         nameOverride: String? = nil
@@ -79,31 +79,16 @@ public class App: FeatureTarget {
     
     public static func example(
         moduleDependencies: [String],
-        externalDependencies: [ExternalDependency],
+        externalDependencies: [String],
         infoPlist: InfoPlist = .default,
         nameOverride: String? = nil
     ) -> App {
         App(moduleDependencies: moduleDependencies,
             externalDependencies: externalDependencies,
-            sourcesPath: "Example/Sources/**",
+            sourcesPath: "Example/**",
             infoPlist: infoPlist,
             nameOverride: nameOverride)
     }
-}
-
-public protocol FeatureTarget {
-    var targetType: FeatureTargetType { get }
-    var moduleDependencies: [String] { get }
-    var externalDependencies: [ExternalDependency] { get }
-    var infoPlist: InfoPlist { get }
-    var nameOverride: String? { get }
-    var sourcesPath: String { get }
-}
-
-public enum FeatureTargetType: Equatable {
-    case framework
-    case unitTests
-    case app
 }
 
 extension Project {
@@ -180,7 +165,7 @@ extension Project {
     public static func customFramework(
         name: String,
         sourcesPath: String,
-        externalDependencies: [ExternalDependency]
+        externalDependencies: [String]
     ) -> Project {
         return Project(
             name: name,
@@ -203,7 +188,7 @@ extension Project {
         return depNames.map { .project(target: $0, path: "../\($0)") }
     }
     
-    private static func mapExternalDependencies(_ extDeps: [ExternalDependency]) -> [TargetDependency] {
-        return extDeps.map { .external(name: $0.name) }
+    private static func mapExternalDependencies(_ extDeps: [String]) -> [TargetDependency] {
+        return extDeps.map { .external(name: $0) }
     }
 }
