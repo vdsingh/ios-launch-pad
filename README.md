@@ -24,7 +24,7 @@ This starter kit provides a robust foundation for building iOS apps, with a focu
    cd ios-launch-pad
    ```
 
-2. **Install Tuist**: If you haven't already, install Tuist by following the instructions on the [official Tuist website](https://docs.tuist.io/tutorial/get-started).
+2. **Install Tuist**: If you haven't already, install Tuist by following the instructions on the [official Tuist website](https://docs.tuist.io/).
 
 3. **Install Dependencies and Generate Xcode Project**: Use Tuist to install package dependencies and generate the Xcode project.
 
