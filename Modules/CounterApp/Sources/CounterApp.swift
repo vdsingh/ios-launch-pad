@@ -1,3 +1,4 @@
+import CounterUI
 import SwiftUI
 
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -10,7 +11,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 }
 
 @main
-struct CounterAppApp: App {
+struct CounterApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     // Uncomment f using TCA:
     // let appStore: StoreOf<CounterApp> = {
@@ -40,7 +41,7 @@ struct RootView: View {
     // @Bindable var store: StoreOf<CounterApp>
 
     var body: some View {
-        Text("Hello, World!")
+        CounterUIView()
     }
 }
 

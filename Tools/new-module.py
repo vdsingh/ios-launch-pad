@@ -39,8 +39,13 @@ def create_module_folder(module_path):
     except Exception as e:
         print(f"An error occurred while creating the module folder: {e}")
 
-def create_project_swift(module_path, module_name, module_type):
-    template_path = os.path.join(TEMPLATES_PATH, "Project.swift")
+def create_project_swift(
+        template_file_name,
+        module_path,
+        module_name, 
+        module_type
+):
+    template_path = os.path.join(TEMPLATES_PATH, template_file_name)
     project_swift_path = os.path.join(module_path, "Project.swift")
     
     try:
@@ -156,15 +161,18 @@ def main():
     module_type = determine_module_type(module_name)
     module_path = create_module_path(module_name)
     create_module_folder(module_path)
-    create_project_swift(module_path, module_name, module_type)
     create_tests_swift(module_path, module_name)
     if module_type == ModuleType.UI:
+        create_project_swift("Feature_Project.swift", module_path, module_name, module_type)
         create_view_swift(module_path, module_name)
     elif module_type == ModuleType.SERVICE:
+        create_project_swift("Feature_Project.swift", module_path, module_name, module_type)
         create_service_swift(module_path, module_name)
     elif module_type == ModuleType.APP:
+        create_project_swift("App_Project.swift", module_path, module_name, module_type)
         create_app_swift(module_path, module_name)
     elif module_type == ModuleType.OTHER:
+        create_project_swift("Feature_Project.swift", module_path, module_name, module_type)
         create_placeholder_swift(module_path)
 
 if __name__ == "__main__":

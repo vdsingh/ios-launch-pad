@@ -2,12 +2,10 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.module(
-    "CounterApp",
+    "{{ModuleName}}",
     featureTargets: [
-        App(
-            moduleDependencies: [
-                "CounterUI"
-            ],
+        Framework(
+            moduleDependencies: [],
             externalDependencies: []
         ),
         UnitTests(

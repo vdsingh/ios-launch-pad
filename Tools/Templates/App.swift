@@ -12,7 +12,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct {{ModuleName}}: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    // Uncomment f using TCA:
+    // Uncomment if using TCA:
     // let appStore: StoreOf<{{ModuleName}}> = {
     //     let store = StoreOf<{{ModuleName}}>(
     //         initialState: {{ModuleName}}.State.init()

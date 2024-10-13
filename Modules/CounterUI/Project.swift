@@ -2,7 +2,7 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.module(
-    "{{ModuleName}}",
+    "CounterUI",
     featureTargets: [
         Framework(
             moduleDependencies: [],
