@@ -1,4 +1,5 @@
 *.xcworkspace
+*.xcodeproj
 **/Derived
 Tuist/.build
 Tuist/Package.resolved

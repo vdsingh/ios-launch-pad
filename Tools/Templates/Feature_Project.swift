@@ -8,6 +8,10 @@ let project = Project.module(
             moduleDependencies: [],
             externalDependencies: []
         ),
+        App(
+            moduleDependencies: [],
+            externalDependencies: []
+        ),
         UnitTests(
             moduleDependencies: [],
             externalDependencies: []
