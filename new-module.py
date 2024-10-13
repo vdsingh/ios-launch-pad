@@ -5,20 +5,13 @@ module_types = ["UI", "Service", "Other"]
 def get_module_name():
     return input("Enter the name of the new module: ")
 
-def get_module_type():
-    while True:
-        print("Select the type of module:")
-        for i, module_type in enumerate(module_types, 1):
-            print(f"{i}. {module_type}")
-        choice = input("Enter the number of your choice: ")
-        try:
-            index = int(choice) - 1
-            if 0 <= index < len(module_types):
-                return module_types[index]
-            else:
-                print("Invalid choice. Please try again.")
-        except ValueError:
-            print("Invalid input. Please enter a number.")
+def determine_module_type(module_name):
+    if module_name.endswith("UI"):
+        return "UI"
+    elif module_name.endswith("Service"):
+        return "Service"
+    else:
+        return "Other"
 
 def create_module_path(module_name):
     return os.path.join("./Modules", module_name)
@@ -120,7 +113,7 @@ def create_service_swift(module_path, module_name):
 
 def main():
     module_name = get_module_name()
-    module_type = get_module_type()
+    module_type = determine_module_type(module_name)
     module_path = create_module_path(module_name)
     create_module_folder(module_path)
     create_project_swift(module_path, module_name, module_type)
