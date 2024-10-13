@@ -12,7 +12,7 @@ final class {{ModuleName}}: {{ModuleName}}Interface {
     }
 }
 
-class Mock{{ModuleName}}: {{ModuleName}}Interfacel {
+class Mock{{ModuleName}}: {{ModuleName}}Interface {
     var shouldSucceed: Bool = true
     var mockData: String = "Mock data from {{ModuleName}}Service"
 
