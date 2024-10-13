@@ -3,4 +3,4 @@ MODULES_PATH := ./Modules
 
 # Create a new module folder and Project.swift file
 new-module:
-	@python3 new-module.py
+	@python3 ./Tools/new-module.py

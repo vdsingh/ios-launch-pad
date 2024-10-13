@@ -1,5 +1,4 @@
 import ProjectDescription
-import BundlePlugin
 
 public class Framework: FeatureTarget {
     public var targetType: FeatureTargetType {
@@ -166,7 +165,6 @@ extension Project {
                         deploymentTargets: .iOS("17.0"),
                         infoPlist: target.infoPlist,
                         sources: ["\(target.sourcesPath)"],
-//                        resources: target,
                         dependencies: dependencies,
                         additionalFiles: [
                             "Project.swift",
