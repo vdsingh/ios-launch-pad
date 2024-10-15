@@ -1,43 +1,42 @@
 # iOS Launch Pad
 
-This repository serves as a comprehensive starter kit for iOS app development, providing a solid foundation and essential features to kickstart your app development process.
+A starter kit + toolkit for streamlining modular iOS app development. Parts of this project use [Tuist](https://tuist.io/), [The Composable Architecture](https://github.com/pointfreeco/swift-composable-architecture), and [Factory](https://github.com/hmlongco/Factory).
 
-## Important Notes
+## Features
 
-1. **Tuist**: The project is configured to use [Tuist](https://tuist.io/), a command-line tool that helps you generate, maintain, and interact with Xcode projects. Make sure you have it installed before proceeding.
+### **Project Generation with Tuist**
+[Tuist](https://tuist.io/) is used for streamlining project generation.
 
-2. **Modular Architecture**: The project is structured using a modular approach, allowing for better code organization and scalability. There is some customization with certain module types (`App`, `UI`, and `Service`), but you can easily customize the project to fit your needs (see `Tools/new-module.py`).
+How to use: 
+1. Install tuist (follow the instructions on their [website](https://tuist.io/))
+2. Run `tuist edit` from the project root to adjust tuist-specific configuration. To add a new package dependency, see `Tuist/Package.swift`
+3. Run `make new-module` to create a new app module. See [Modular Architecture](#modular-architecture) for more info on modules
+4. Run `tuist install` to install package dependencies
+5. Run `tuist generate` to generate the project
 
-3. **Dependencies**: You can add new dependencies in `Tuist/Package.swift`.
+### **Modular Architecture**
+Modularization allows for better code organization and scalability. There is some auto-generation for built-in module types, which you can try out by running `make new-module` and entering a module name that ends with `App`, `UI`, or `Service`. You can add custom module types to fit your needs (see `Tools/new-module.py`). App modules (or "micro-features") should be located in the `Modules` folder.
 
-4. **Sample App**: Includes a sample app (`CounterApp`) and UI (`CounterUI`) module to demonstrate the modular architecture. These modules are made to be deleted!
+Notes:
+- All modules need a `Project.swift` file that is used by Tuist, which you can edit to change the target configuration (e.g. declaring module dependencies, adding info.plist values, etc.)
+- Non-`App` modules come with an example app target which you can delete if you don't need it
+- You need to declare module dependencies in the `Project.swift` file for any given module
 
-This starter kit provides a robust foundation for building iOS apps, with a focus on modularity, modern Swift practices, and developer productivity. It's designed to be flexible and can be easily customized to fit your specific project requirements.
+### **Xcode Templates**
+Within the `Templates` folder, there are some custom Xcode templates to streamline the development process by providing boilerplate code for common shapes.
+How to use:
+1. Remove any templates that you don't want to use (or add more!)
+2. Move the Templates folder to `~/Library/Developer/Xcode/`
+3. Restart Xcode
+4. You can use the templates by going to File -> New -> (one of the templates)
 
+### **Pre-built Services**
+Within the `Modules` folder are implementations of common services that you can leverage for app features (e.g., Device Location Service). [Factory](https://github.com/hmlongco/Factory) is used by default for dependency injection, though this can be easily swapped by making adjustments to your Service module's `Accessors.swift` file. Remove any services you don't need.
 
-## How to Use
+## In the Pipeline:
 
-1. **Clone the Repository**: Start by cloning this repository to your local machine.
-
-   ```
-   git clone https://github.com/vdsingh/ios-launch-pad.git
-   cd ios-launch-pad
-   ```
-
-2. **Install Tuist**: If you haven't already, install Tuist by following the instructions on the [official Tuist website](https://docs.tuist.io/).
-
-3. **Install Dependencies and Generate Xcode Project**: Use Tuist to install package dependencies and generate the Xcode project.
-
-   ```
-   tuist install && tuist generate
-   ```
-
-4. **Run the sample app**: The `tuist generate` command should open Xcode. Try running the `CounterApp` target.
-
-5. **Create New Modules**: Once you're ready, create a new module using the provided script:
-
-   ```
-   make new-module
-   ```
-
-6. **Remove Sample Modules**: Once you're familiar with the structure, you can remove the sample `CounterApp` and `CounterUI` modules and replace them with your own app modules.
+- Keychain Service
+- User Defaults Service
+- API Client
+- Simple Design System Implementation
+- More tools for automation (e.g., scripts to automate declaration of dependencies)
